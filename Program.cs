@@ -17,8 +17,6 @@ public static class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
-
         app.MapGet("/health", () => "App is healthy!");
 
         app.Run();
