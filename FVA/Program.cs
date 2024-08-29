@@ -1,18 +1,26 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace FVA;
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+public static class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        var app = builder.Build();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.MapGet("/health", () => "App is healthy!");
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/health", () => "App is healthy!");
-
-app.Run();
