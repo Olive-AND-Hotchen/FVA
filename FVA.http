@@ -1,6 +1,4 @@
-@FVA_HostAddress = http://localhost:5088
+@FVA_HostAddress = http://localhost:8080
 
-GET {{FVA_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
+GET {{FVA_HostAddress}}/health/
+Accept: text/plain
