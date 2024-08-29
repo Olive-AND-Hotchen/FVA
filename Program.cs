@@ -1,3 +1,6 @@
+using FVA.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace FVA;
 
 public static class Program
@@ -8,6 +11,10 @@ public static class Program
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers();
+        
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddDbContext<OdinDatabaseContext>(options => options.UseSqlServer(connectionString));
 
         var app = builder.Build();
 
@@ -17,6 +24,7 @@ public static class Program
             app.UseSwaggerUI();
         }
 
+        app.UseHttpsRedirection();
         app.MapGet("/health", () => "App is healthy!");
 
         app.Run();
