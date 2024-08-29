@@ -13,4 +13,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/health", () => "App is healthy!");
+
 app.Run();
