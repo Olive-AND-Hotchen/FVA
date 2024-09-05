@@ -26,6 +26,7 @@ public static class Program
 
         app.UseHttpsRedirection();
         app.MapGet("/health", () => "App is healthy!");
+        app.MapControllers();
 
         app.Run();
     }
