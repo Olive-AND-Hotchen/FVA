@@ -13,6 +13,21 @@ This project uses a [Makefile](Makefile) to run commands. Any command can be run
 
 ## Commands
 
+### **start**
+``` bash
+make start
+```
+#### **Description**
+Runs several commands to bring up the stack, api and db.
+
+### **stop**
+``` bash
+make stop
+```
+#### **Description**
+Stop the api and remove containers.
+
+
 ### **cleanup**
 ``` bash
 make cleanup
@@ -69,3 +84,31 @@ make docker-stop
 
 #### **Description**
 Tears down the container.
+
+
+### **migrate**
+```bash
+make migrate migration_name={MIGRATION_NAME}
+```
+
+#### **Description**
+Creates a migration and updates the database.
+Accepts a "migration_name" parameter
+
+### **roll-back-migration**
+```bash
+make roll-back-migration previous_migration={PREVIOUS_MIGRATION}
+```
+
+#### **Description**
+Rollback migrations to a specific named migration.
+Accepts a "previous" parameter
+
+### **format**
+```bash
+make format
+```
+
+#### **Description**
+Runs dotnet format which targets FVA.csproj and formats code.
+

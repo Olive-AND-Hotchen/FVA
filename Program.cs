@@ -14,7 +14,7 @@ public static class Program
         builder.Services.AddControllers();
         
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        builder.Services.AddDbContext<OdinDatabaseContext>(options => options.UseSqlServer(connectionString));
+        builder.Services.AddDbContext<OdinDatabaseContext>(options => options.UseNpgsql(connectionString));
 
         var app = builder.Build();
 

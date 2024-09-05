@@ -1,6 +1,12 @@
+### COMMANDS ##
+
 start : cleanup restore build docker-build docker-run
 stop : docker-stop cleanup
- 
+migrate: start create-migration update-db
+roll-back-migration: revert-migration remove-migration
+
+### DOTNET ##
+
 cleanup:
 	dotnet clean FVA.csproj
  
@@ -9,16 +15,35 @@ restore:
  
 build:
 	dotnet build FVA.csproj
+
+format:
+	dotnet format FVA.csproj
  
 run:
 	dotnet run -p FVA.csproj
+
+create-migration:
+	dotnet ef migrations add $(migration_name)
+
+update-db:
+	dotnet ef database update
+
+revert-migration:
+	dotnet ef database update $(previous_migration)
+
+remove-migration:
+	dotnet ef migrations remove
+
+### DOCKER ###
 
 docker-build:
 	docker build -t fva .
 
 docker-run:
-	docker run -dp 8080:8080 fva
+	docker compose up -d
 
 docker-stop:
-	docker stop fva
-	docker rm fva
+	docker compose down
+
+
+
