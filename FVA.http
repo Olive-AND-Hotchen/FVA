@@ -2,3 +2,7 @@
 
 GET {{FVA_HostAddress}}/health/
 Accept: text/plain
+
+### TEST
+GET {{FVA_HostAddress}}/api/testmodel
+Accept: text/plain

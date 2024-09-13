@@ -29,4 +29,38 @@
       <Folder Include="Controllers\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="FVA-Client\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="FVA-Client\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="FVA-Client\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="FVA-Client\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="FVA-Client\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\appsettings.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\obj\FVA-Client.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Properties\launchSettings.json" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\App.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Pages\Weather.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\Routes.razor" />
+      <_ContentIncludedByDefault Remove="FVA-Client\Components\_Imports.razor" />
+    </ItemGroup>
+
 </Project>
