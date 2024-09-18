@@ -8,8 +8,8 @@ namespace FVA.Database.Models;
 public class Role
 {
     public int Id { get; set; }
-    public string Title { get; set; }
+    public required string Title { get; set; }
     public DateTime From { get; set; }
     public DateTime To { get; set; }
-    public string PublicContact { get; set; }
+    public required string PublicContact { get; set; }
 }

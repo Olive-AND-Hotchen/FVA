@@ -8,7 +8,7 @@ namespace FVA.Database.Models;
 public class AccessibilityFeature
 {
     public int Id { get; set; }
-    public Location Location { get; set; }
+    public required Location Location { get; set; }
     public int LocationId { get; set; }
-    public string Feature { get; set; }
+    public required string Feature { get; set; }
 }

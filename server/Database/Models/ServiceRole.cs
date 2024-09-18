@@ -8,8 +8,8 @@ namespace FVA.Database.Models;
 public class ServiceRole
 {
     public int Id { get; set; }
-    public Role Role { get; set; }
+    public required Role Role { get; set; }
     public int RoleId { get; set; }
-    public PeopleContact PeopleContact { get; set; }
+    public required PeopleContact PeopleContact { get; set; }
     public int PeopleContactId { get; set; }
 }
