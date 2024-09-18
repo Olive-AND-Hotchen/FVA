@@ -18,14 +18,14 @@ This project uses a [Makefile](Makefile) to run commands. Any command can be run
 make start
 ```
 #### **Description**
-Runs several commands to bring up the stack, api and db.
+Runs several commands to bring up the stack, client, api and db.
 
 ### **stop**
 ``` bash
 make stop
 ```
 #### **Description**
-Stop the api and remove containers.
+Stop the services and remove containers.
 
 
 ### **cleanup**
@@ -33,7 +33,7 @@ Stop the api and remove containers.
 make cleanup
 ```
 #### **Description**
-Cleans the output of the project from the previous build. Project targeted: (``FVA.csproj``).
+Cleans the output of the project from the previous build. Projects targeted: (``Server.csproj``, ``Client.csproj``).
 
 Whilst not required everytime the project is built, it can help in resolving dotnet specific problems when assemblies may not work correctly.
 
