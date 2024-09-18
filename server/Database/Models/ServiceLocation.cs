@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FVA.Database.Models;
 
+[Table("ServiceLocation")]
 [PrimaryKey("Id")]
-[Table("OrganisationLocation")]
-public class OrganisationLocation
+public class ServiceLocation
 {
     public int Id { get; set; }
-    public Organisation Organisation { get; set; }
-    public int OrganisationId { get; set; }
-    public Location Location { get; set; }
+    public required Service Service { get; set; }
+    public int ServiceId { get; set; }
     public int LocationId { get; set; }
+    public required Location Location { get; set; }
 }

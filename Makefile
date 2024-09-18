@@ -8,19 +8,24 @@ roll-back-migration: revert-migration remove-migration
 ### DOTNET ##
 
 cleanup:
-	dotnet clean FVA.csproj
+	dotnet clean Server/Server.csproj
+	dotnet clean Client/Client.csproj
  
 restore:
-	dotnet restore FVA.csproj
+	dotnet restore Server/Server.csproj
+	dotnet restore Client/Client.csproj
  
 build:
-	dotnet build FVA.csproj
+	dotnet build Server/Server.csproj
+	dotnet build Client/Client.csproj
 
 format:
-	dotnet format FVA.csproj
+	dotnet format Server/Server.csproj
+	dotnet format Client/Client.csproj
  
 run:
-	dotnet run -p FVA.csproj
+	dotnet run -p Server/Server.csproj
+	dotnet run -p Client/Client.csproj
 
 create-migration:
 	dotnet ef migrations add $(migration_name)
@@ -37,13 +42,13 @@ remove-migration:
 ### DOCKER ###
 
 docker-build:
-	docker build -t fva .
+
+	docker build -t registry/server server
+
+	docker build -t registry/client client
 
 docker-run:
 	docker compose up -d
 
 docker-stop:
 	docker compose down
-
-
-

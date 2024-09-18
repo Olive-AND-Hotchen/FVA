@@ -8,7 +8,7 @@ namespace FVA.Database.Models;
 public class PostcodeData
 {
     public int Id { get; set; }
-    public string OutwardCode { get; set; }
-    public string CouncilWard { get; set; }
-    public string CouncilConstituency { get; set; }
+    public required string OutwardCode { get; set; }
+    public required string CouncilWard { get; set; }
+    public required string CouncilConstituency { get; set; }
 }
