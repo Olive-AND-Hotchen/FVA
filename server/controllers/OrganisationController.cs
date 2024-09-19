@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using DTO;
 using FVA.Database;
 using FVA.Database.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace FVA.Controllers
+namespace Server.controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -11,9 +12,10 @@ namespace FVA.Controllers
     {
         // GET: api/Organisation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisations()
+        public async Task<ActionResult<IEnumerable<OrganisationDTO>>> GetOrganisations()
         {
-            return await context.Organisations.ToListAsync();
+            var res = await context.Organisations.ToListAsync();
+            return res.Select(x => new OrganisationDTO { Name = x.Name }).ToList();
         }
 
         [HttpGet("{id:int}")]

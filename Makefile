@@ -43,9 +43,8 @@ remove-migration:
 
 docker-build:
 
-	docker build -t registry/server server
-
-	docker build -t registry/client client
+	docker build -t fva:server -f Dockerfile-Server .
+	docker build -t fva:client -f Dockerfile-Client .
 
 docker-run:
 	docker compose up -d

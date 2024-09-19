@@ -1,7 +1,30 @@
 ﻿@page "/"
+@using DTO
+@inject OrganisationService OrganisationService;
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
+<button @onclick="async () => await GetOrgs()">Get Orgs</button>
+@if (orgs != null)
+{
+    @foreach (var org in orgs)
+    {
+        <p>@org.Name</p>
+    }
+}
+
+
 Welcome to your new app.
+
+@code {
+    private OrganisationDTO[]? orgs;
+    
+    private async Task GetOrgs()
+    {
+        orgs = await OrganisationService.GetOrganisationsAsync();
+    }
+    
+
+}

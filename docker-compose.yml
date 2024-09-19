@@ -7,8 +7,8 @@
       ports:
         - "8080:80"
       build:
-        context: ./client
-        dockerfile: Dockerfile
+        context: .
+        dockerfile: Dockerfile-Client
       environment:
         - ASPNETCORE_URLS=http://+:80
   server:
@@ -19,8 +19,8 @@
     ports:
       - "8081:80"
     build:
-      context: ./server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile-Server
     environment:
       - ConnectionStrings__DefaultConnection=User ID =postgres;Password=postgres;Server=app_db;Port=5432;Database=odin_db;Pooling=true;MinPoolSize=0;MaxPoolSize=20;Timeout=15;
       - ASPNETCORE_URLS=http://+:80

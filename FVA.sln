@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{094E312E-3C15-4051-853A-B76E511FDB97}"
@@ -10,11 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		appsettings.json = appsettings.json
 		appsettings.Development.json = appsettings.Development.json
 		README.md = README.md
+		Dockerfile-Client = Dockerfile-Client
+		Dockerfile-Server = Dockerfile-Server
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{00215753-8D89-4F9D-A363-0067013074C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{5BD67995-C711-4F21-BB0D-471F5A179E8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{C0A66403-A110-443A-A31A-6C3696E53061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,10 @@ Global
 		{5BD67995-C711-4F21-BB0D-471F5A179E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD67995-C711-4F21-BB0D-471F5A179E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD67995-C711-4F21-BB0D-471F5A179E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0A66403-A110-443A-A31A-6C3696E53061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A66403-A110-443A-A31A-6C3696E53061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A66403-A110-443A-A31A-6C3696E53061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A66403-A110-443A-A31A-6C3696E53061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
