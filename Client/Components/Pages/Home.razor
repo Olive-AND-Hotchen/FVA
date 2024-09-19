@@ -1,12 +1,15 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @using DTO
 @inject OrganisationService OrganisationService;
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hey ya, FVA!</h1>
 
-<button @onclick="async () => await GetOrgs()">Get Orgs</button>
+<button class="btn btn-primary" @onclick="async () => await GetOrgs()">Get Orgs From Service</button>
+<button class="btn btn-primary" @onclick="GetOrgsHardcoded">Get Orgs Hardcoded</button>
+
 @if (orgs != null)
 {
     @foreach (var org in orgs)
@@ -15,16 +18,27 @@
     }
 }
 
-
 Welcome to your new app.
 
 @code {
-    private OrganisationDTO[]? orgs;
+    private OrganisationDTO[] orgs;
     
+    private void GetOrgsHardcoded()
+    {
+        orgs = new OrganisationDTO[50];
+            
+        for(var i=0; i<50; i++)
+        {
+            var org = new OrganisationDTO();
+
+            org.Name = "Org " + i;
+
+            orgs[i] = org;
+        }
+    }
+
     private async Task GetOrgs()
     {
         orgs = await OrganisationService.GetOrganisationsAsync();
     }
-    
-
 }
