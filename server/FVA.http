@@ -1,8 +1,23 @@
-@FVA_HostAddress = http://localhost:8080
+@FVA_HostAddress = http://localhost:8081
 
 GET {{FVA_HostAddress}}/health/
 Accept: text/plain
 
-### TEST
-GET {{FVA_HostAddress}}/api/testmodel
+### Get Organisation
+GET {{FVA_HostAddress}}/api/Organisation
 Accept: text/plain
+
+### Post organisation
+
+POST {{FVA_HostAddress}}/api/Organisation
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "objectives": "objectives",
+  "services": [],
+  "organisationRoles": []
+}
+
+### Seed
+GET {{FVA_HostAddress}}/seed

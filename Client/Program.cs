@@ -10,7 +10,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddScoped(_ =>
     new HttpClient
     {
-        BaseAddress = new Uri("https://localhost:8081")
+        BaseAddress = new Uri("http://localhost:8081")
     });
 
 builder.Services.AddScoped<OrganisationService>();
@@ -20,11 +20,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseExceptionHandler("/Error", true);
     app.UseHsts();
 }
-
 
 app.UseHttpsRedirection();
 
