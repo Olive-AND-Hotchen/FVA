@@ -5,6 +5,7 @@ using FVA.Database;
 using FVA.Database.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
 namespace Server.controllers;
 
@@ -15,11 +16,9 @@ public class OrganisationController(OdinDatabaseContext context) : ControllerBas
     // GET: api/Organisation
     [HttpGet]
     [IgnoreAntiforgeryToken]
-    public async Task<ActionResult<IEnumerable<OrganisationDTO>>> GetOrganisations()
+    public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisations()
     {
-        var res = await context.Organisations.ToListAsync();
-        return res.Select(x => new OrganisationDTO
-            { Name = x.Name, Id = x.Id, ActiveFrom = x.ActiveFrom, ActiveTo = x.ActiveTo }).ToList();
+        return await context.Organisations.ToListAsync();
     }
 
 

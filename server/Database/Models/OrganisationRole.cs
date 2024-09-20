@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
 namespace FVA.Database.Models;
 

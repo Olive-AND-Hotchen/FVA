@@ -1,5 +1,6 @@
 using FVA.Database.Models;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
 namespace FVA.Database;
 
@@ -7,7 +8,6 @@ public class OdinDatabaseContext(
     DbContextOptions
         <OdinDatabaseContext> options) : DbContext(options)
 {
-
     public DbSet<Organisation> Organisations { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<OrganisationLocation> OrganisationLocations { get; set; }
@@ -19,7 +19,7 @@ public class OdinDatabaseContext(
     public DbSet<ServiceLocation> ServiceLocations { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<AccessibilityFeature> AccessibilityFeatures { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         SetupOrganisation(modelBuilder);
@@ -33,7 +33,7 @@ public class OdinDatabaseContext(
         SetupServiceLocations(modelBuilder);
         SetupServices(modelBuilder);
         SetupAccessibilityFeatures(modelBuilder);
-        
+
         base.OnModelCreating(modelBuilder);
     }
 

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
 namespace FVA.Database.Models;
 
@@ -14,8 +15,8 @@ public class Service
     public required string OperatingHours { get; set; }
     public required string ServiceObjectives { get; set; }
     public required string DemographicRestrictions { get; set; }
-    public int ServiceCost  { get; set; }
-    public required string WorkerGenderChoice  { get; set; }
-    public bool OutOfArea  { get; set; }
-    public required string AimsObjectives  { get; set; }
+    public int ServiceCost { get; set; }
+    public required string WorkerGenderChoice { get; set; }
+    public bool OutOfArea { get; set; }
+    public required string AimsObjectives { get; set; }
 }

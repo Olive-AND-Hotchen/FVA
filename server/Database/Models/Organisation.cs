@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using FVA.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FVA.Database.Models;
+namespace Server.Database.Models;
 
 [Table("Organisation")]
 [PrimaryKey("Id")]
