@@ -7,17 +7,8 @@ Accept: text/plain
 GET {{FVA_HostAddress}}/api/Organisation
 Accept: text/plain
 
-### Post organisation
-
-POST {{FVA_HostAddress}}/api/Organisation
-Content-Type: application/json
-
-{
-  "name": "Test",
-  "objectives": "objectives",
-  "services": [],
-  "organisationRoles": []
-}
+### Get location
+GET {{FVA_HostAddress}}/api/Location
 
 ### Seed
 GET {{FVA_HostAddress}}/seed

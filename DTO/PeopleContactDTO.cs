@@ -3,9 +3,9 @@ namespace DTO;
 public record PeopleContactDTO
 {
     public int Id { get; set; }
-    public required string Forename { get; set; }
-    public required string Surname { get; set; }
-    public required string DateOfBirth { get; set; }
-    public required string Phone { get; set; }
-    public required string Email { get; set; }
+    public string Forename { get; set; }
+    public string Surname { get; set; }
+    public string DateOfBirth { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
 }

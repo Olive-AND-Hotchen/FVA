@@ -13,14 +13,12 @@ namespace Server.controllers;
 [ApiController]
 public class OrganisationController(OdinDatabaseContext context) : ControllerBase
 {
-    // GET: api/Organisation
     [HttpGet]
     [IgnoreAntiforgeryToken]
     public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisations()
     {
         return await context.Organisations.ToListAsync();
     }
-
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Organisation>> GetOrganisation(int id)
