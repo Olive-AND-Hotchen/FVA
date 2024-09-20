@@ -4,8 +4,8 @@ namespace Client;
 
 public class OrganisationService(HttpClient client)
 {
-    public async Task<OrganisationDTO[]?> GetOrganisationsAsync()
+    public async Task<OrganisationDto[]?> GetOrganisationsAsync()
     {
-        return await client.GetFromJsonAsync<OrganisationDTO[]>("/api/organisations") ?? [];
+        return await client.GetFromJsonAsync<OrganisationDto[]>("/api/organisations") ?? [];
     }
 }

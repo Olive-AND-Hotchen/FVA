@@ -1,6 +1,6 @@
 ### COMMANDS ##
 
-start : cleanup restore build docker-build docker-run
+start : cleanup restore docker-build docker-run
 stop : docker-stop cleanup
 migrate: start create-migration update-db
 roll-back-migration: revert-migration remove-migration
@@ -40,11 +40,11 @@ remove-migration:
 ### DOCKER ###
 
 docker-build:
-	docker build -t fva:server -f Dockerfile-Server .
-	docker build -t fva:client -f Dockerfile-Client .
+	docker build --no-cache -t fva:server -f Dockerfile-Server .
+	docker build --no-cache -t fva:client -f Dockerfile-Client .
 
 docker-run:
-	docker compose up -d
+	docker compose up
 
 docker-stop:
 	docker compose down

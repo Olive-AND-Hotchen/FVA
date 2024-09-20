@@ -1,90 +1,79 @@
+using Bogus;
+using Bogus.DataSets;
 using DTO;
 using FVA.Database;
 using FVA.Database.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
-namespace Server.controllers
+namespace Server.controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class OrganisationController(OdinDatabaseContext context) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrganisationController(OdinDatabaseContext context) : ControllerBase
+    [HttpGet]
+    [IgnoreAntiforgeryToken]
+    public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisations()
     {
-        // GET: api/Organisation
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrganisationDTO>>> GetOrganisations()
+        return await context.Organisations.ToListAsync();
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Organisation>> GetOrganisation(int id)
+    {
+        var organisation = await context.Organisations.FindAsync(id);
+
+        if (organisation == null) return NotFound();
+
+        return organisation;
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> PutOrganisation(int id, Organisation organisation)
+    {
+        if (id != organisation.Id) return BadRequest();
+
+        context.Entry(organisation).State = EntityState.Modified;
+
+        try
         {
-            var res = await context.Organisations.ToListAsync();
-            return res.Select(x => new OrganisationDTO { Name = x.Name }).ToList();
-        }
-
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Organisation>> GetOrganisation(int id)
-        {
-            var organisation = await context.Organisations.FindAsync(id);
-
-            if (organisation == null)
-            {
-                return NotFound();
-            }
-
-            return organisation;
-        }
-
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> PutOrganisation(int id, Organisation organisation)
-        {
-            if (id != organisation.Id)
-            {
-                return BadRequest();
-            }
-
-            context.Entry(organisation).State = EntityState.Modified;
-
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrganisationExists(id))
-                {
-                    return NotFound();
-                }
-
-                throw;
-            }
-
-            return NoContent();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Organisation>> PostOrganisation(Organisation organisation)
-        {
-            context.Organisations.Add(organisation);
             await context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOrganisation", new { id = organisation.Id }, organisation);
         }
-
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteOrganisation(int id)
+        catch (DbUpdateConcurrencyException)
         {
-            var organisation = await context.Organisations.FindAsync(id);
-            if (organisation == null)
-            {
-                return NotFound();
-            }
+            if (!OrganisationExists(id)) return NotFound();
 
-            context.Organisations.Remove(organisation);
-            await context.SaveChangesAsync();
-
-            return NoContent();
+            throw;
         }
 
-        private bool OrganisationExists(int id)
-        {
-            return context.Organisations.Any(e => e.Id == id);
-        }
+        return NoContent();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Organisation>> PostOrganisation(Organisation organisation)
+    {
+        context.Organisations.Add(organisation);
+        await context.SaveChangesAsync();
+
+        return CreatedAtAction("GetOrganisation", new { id = organisation.Id }, organisation);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteOrganisation(int id)
+    {
+        var organisation = await context.Organisations.FindAsync(id);
+        if (organisation == null) return NotFound();
+
+        context.Organisations.Remove(organisation);
+        await context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    private bool OrganisationExists(int id)
+    {
+        return context.Organisations.Any(e => e.Id == id);
     }
 }

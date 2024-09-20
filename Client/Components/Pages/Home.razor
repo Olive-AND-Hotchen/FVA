@@ -10,9 +10,9 @@
 <button class="btn btn-primary" @onclick="async () => await GetOrgs()">Get Orgs From Service</button>
 <button class="btn btn-primary" @onclick="GetOrgsHardcoded">Get Orgs Hardcoded</button>
 
-@if (orgs != null)
+@if (_orgs != null)
 {
-    @foreach (var org in orgs)
+    @foreach (var org in _orgs)
     {
         <p>@org.Name</p>
     }
@@ -21,24 +21,24 @@
 Welcome to your new app.
 
 @code {
-    private OrganisationDTO[] orgs;
-    
+    private OrganisationDto[] _orgs;
+
     private void GetOrgsHardcoded()
     {
-        orgs = new OrganisationDTO[50];
-            
-        for(var i=0; i<50; i++)
+        for (var i = 0; i < 50; i++)
         {
-            var org = new OrganisationDTO();
+            var org = new OrganisationDto
+            {
+                Name = "Org " + i
+            };
 
-            org.Name = "Org " + i;
-
-            orgs[i] = org;
+            _orgs[i] = org;
         }
     }
 
     private async Task GetOrgs()
     {
-        orgs = await OrganisationService.GetOrganisationsAsync();
+        _orgs = await OrganisationService.GetOrganisationsAsync();
     }
+
 }
