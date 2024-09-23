@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using FVA.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FVA.Database.Models;
+namespace Server.Database.Models;
 
 [PrimaryKey("Id")]
 [Table("Location")]
@@ -11,7 +12,7 @@ public class Location
     public required string BuildingName { get; set; }
     public required string BuildingNumber { get; set; }
     public required string Street { get; set; }
-    public required string Area  { get; set; }
+    public required string Area { get; set; }
     public required string Town { get; set; }
     public required string Region { get; set; }
     public required string Postcode { get; set; }

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace FVA.Database.Models;
+namespace Server.Database.Models;
 
 [PrimaryKey("Id")]
 [Table("AccessibilityFeature")]

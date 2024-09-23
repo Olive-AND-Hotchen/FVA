@@ -2,6 +2,7 @@ using FVA.Database;
 using FVA.Database.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Server.Database.Models;
 
 namespace Server.controllers;
 
@@ -20,22 +21,16 @@ public class LocationController(OdinDatabaseContext context) : ControllerBase
     {
         var location = await context.Locations.FindAsync(id);
 
-        if (location == null)
-        {
-            return NotFound();
-        }
-        
+        if (location == null) return NotFound();
+
         return location;
     }
 
     [HttpPut("{id:int}")]
     public async Task<ActionResult> PutLocation(int id, Location location)
     {
-        if (id != location.Id)
-        {
-            return BadRequest();
-        }
-        
+        if (id != location.Id) return BadRequest();
+
         context.Entry(location).State = EntityState.Modified;
 
         try
@@ -65,10 +60,7 @@ public class LocationController(OdinDatabaseContext context) : ControllerBase
     public async Task<IActionResult> DeleteLocation(int id)
     {
         var location = await context.Locations.FindAsync(id);
-        if (location == null)
-        {
-            return NotFound();
-        }
+        if (location == null) return NotFound();
 
         context.Locations.Remove(location);
 
