@@ -3,6 +3,7 @@ namespace DTO;
 public record ServiceDto
 {
     public int Id { get; set; }
+    public string Name { get; set; }
     public OrganisationDto Organisation { get; set; }
     public int OrganisationId { get; set; }
     public string ReferralDetails { get; set; }

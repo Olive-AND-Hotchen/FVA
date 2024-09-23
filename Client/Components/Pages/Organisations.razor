@@ -1,5 +1,4 @@
 ﻿@page "/Organisations"
-@rendermode InteractiveServer
 @using DTO
 @using MudBlazor.Components
 @inject OrganisationService OrganisationService;
@@ -13,7 +12,11 @@
 
 @if (orgs != null)
 {
-    
+    <MudDataGrid Items="@orgs.Take(4)">
+        <Columns>
+            <PropertyColumn Property="x => x.Name" />
+        </Columns>
+    </MudDataGrid>
 }
 
 @code {

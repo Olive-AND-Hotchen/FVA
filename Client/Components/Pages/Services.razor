@@ -1,0 +1,41 @@
+﻿@page "/Services"
+@using DTO
+@using MudBlazor.Components
+
+<PageTitle>Services</PageTitle>
+
+<h1>Services</h1>
+
+@if (services != null)
+{
+    <MudDataGrid Items="@services">
+        <Columns>
+            <PropertyColumn Property="x => x.Name" />
+        </Columns>
+    </MudDataGrid>
+}
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetOrgsHardcoded();
+    }
+
+    private ServiceDto[] services;
+    
+    private void GetOrgsHardcoded()
+    {
+        services = new ServiceDto[50];
+            
+        for(var i=0; i<50; i++)
+        {
+            var service = new ServiceDto();
+
+            service.Name = "Service " + i;
+
+            services[i] = service;
+        }
+    }
+
+}
