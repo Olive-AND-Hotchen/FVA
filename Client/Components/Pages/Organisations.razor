@@ -1,0 +1,40 @@
+﻿@page "/Organisations"
+@rendermode InteractiveServer
+@using DTO
+@using MudBlazor.Components
+@inject OrganisationService OrganisationService;
+
+<PageTitle>Organisations</PageTitle>
+
+<h1>Organisations</h1>
+
+<button class="btn btn-primary" @onclick="async () => await GetOrgs()">Get Orgs From Service</button>
+<button class="btn btn-primary" @onclick="GetOrgsHardcoded">Get Orgs Hardcoded</button>
+
+@if (orgs != null)
+{
+    
+}
+
+@code {
+    private OrganisationDto[] orgs;
+    
+    private void GetOrgsHardcoded()
+    {
+        orgs = new OrganisationDto[50];
+            
+        for(var i=0; i<50; i++)
+        {
+            var org = new OrganisationDto();
+
+            org.Name = "Org " + i;
+
+            orgs[i] = org;
+        }
+    }
+
+    private async Task GetOrgs()
+    {
+        orgs = await OrganisationService.GetOrganisationsAsync();
+    }
+}

@@ -7,38 +7,8 @@
 
 <h1>Hey ya, FVA!</h1>
 
-<button class="btn btn-primary" @onclick="async () => await GetOrgs()">Get Orgs From Service</button>
-<button class="btn btn-primary" @onclick="GetOrgsHardcoded">Get Orgs Hardcoded</button>
-
-@if (_orgs != null)
-{
-    @foreach (var org in _orgs)
-    {
-        <p>@org.Name</p>
-    }
-}
-
 Welcome to your new app.
 
 @code {
-    private OrganisationDto[] _orgs;
-
-    private void GetOrgsHardcoded()
-    {
-        for (var i = 0; i < 50; i++)
-        {
-            var org = new OrganisationDto
-            {
-                Name = "Org " + i
-            };
-
-            _orgs[i] = org;
-        }
-    }
-
-    private async Task GetOrgs()
-    {
-        _orgs = await OrganisationService.GetOrganisationsAsync();
-    }
 
 }
