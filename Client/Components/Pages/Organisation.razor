@@ -1,0 +1,27 @@
+﻿@page "/Organisation/{organisationName}"
+@using DTO
+@using MudBlazor.Components
+
+<h1>@organisationName Details</h1>
+
+<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="d-inline-flex pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="d-inline-flex pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+
+    [Parameter]
+    public string organisationName { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        var test = organisationName;
+    }   
+}
