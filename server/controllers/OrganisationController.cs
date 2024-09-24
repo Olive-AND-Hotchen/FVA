@@ -1,3 +1,4 @@
+using System.Collections;
 using FVA.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,15 @@ public class OrganisationController(OdinDatabaseContext context) : ControllerBas
 {
     [HttpGet]
     [IgnoreAntiforgeryToken]
-    public async Task<ActionResult<IEnumerable<Organisation>>> GetOrganisations()
+    public async Task<ActionResult<IEnumerable>> GetOrganisations()
     {
-        return await context.Organisations.ToListAsync();
+        return await context.Organisations.Include(x => x.Services).Select(
+            x => new
+            {
+                orgId = x.Id,
+                services = x.Services
+            }
+        ).ToListAsync();
     }
 
     [HttpGet("{id:int}")]
