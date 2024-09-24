@@ -1,8 +1,9 @@
 ### COMMANDS ##
 
-start : cleanup restore docker-build docker-run
+start-dev : cleanup restore docker-build-dev docker-run
+start-release : cleanup restore docker-build-release docker-run
 stop : docker-stop cleanup
-migrate: start create-migration update-db
+migrate: start-dev create-migration update-db
 roll-back-migration: revert-migration remove-migration
 
 ### DOTNET ##
@@ -36,12 +37,21 @@ revert-migration:
 
 remove-migration:
 	dotnet ef migrations remove --project Server/Server.csproj
+	
+
+dev-cert:
+	dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p fva_password
+	dotnet dev-certs https --trust
 
 ### DOCKER ###
 
-docker-build:
-	docker build --no-cache -t fva:server -f Dockerfile-Server .
-	docker build --no-cache -t fva:client -f Dockerfile-Client .
+docker-build-dev:
+	docker build --no-cache -t fva:server -f Dockerfile-Server --build-arg ENV=Debug .
+	docker build --no-cache -t fva:client -f Dockerfile-Client --build-arg ENV=Debug .
+
+docker-build-release:
+	docker build --no-cache -t fva:server -f Dockerfile-Server --build-arg ENV=Release .
+	docker build --no-cache -t fva:client -f Dockerfile-Client --build-arg ENV=Release .
 
 docker-run:
 	docker compose up

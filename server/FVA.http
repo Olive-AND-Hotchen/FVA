@@ -1,4 +1,4 @@
-@FVA_HostAddress = http://localhost:8081
+@FVA_HostAddress = https://localhost:8081
 
 GET {{FVA_HostAddress}}/health/
 Accept: text/plain

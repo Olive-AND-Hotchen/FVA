@@ -7,6 +7,8 @@ https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 
 **docker**: https://www.docker.com/
 
+**trusted certs**: [See dev-cert command](#dev-cert)
+
 # Commands
 
 This project uses a [Makefile](Makefile) to run commands. Any command can be run with
@@ -87,15 +89,29 @@ make run-server
 
 Runs the server application.
 
-### **docker-build**
+### **docker-build-dev**
 
 ```bash
-make docker-build
+make docker-build-dev
 ```
 
 #### **Description**
 
-Build the image based on mcr.microsoft.com/dotnet/aspnet:8.0
+Build the image based on mcr.microsoft.com/dotnet/aspnet:8.0.
+This is build with the arg ENV set to Debug to indicate to the
+dotnet cli to build the assembly in debug.
+
+### **docker-build-release**
+
+```bash
+make docker-build-release
+```
+
+#### **Description**
+
+Build the image based on mcr.microsoft.com/dotnet/aspnet:8.0.
+This is build with the arg ENV set to Release to indicate to the
+dotnet cli to build the assembly in Release.
 
 ### **docker-run**
 
@@ -149,3 +165,43 @@ make format
 
 Runs dotnet format which targets the solution and formats code.
 
+### **dev-cert**
+
+```bash
+make dev-cert
+```
+
+#### **Description**
+
+Generates a self-signed development certificate that gets copied to the container
+to allow for https use. This command is configured to be run on MacOS.
+
+**_MUST BE RUN TO DEVELOP LOCALLY_**
+
+## Port Mapping and docker setup
+
+The project is split into 3 services **Server** and **Client**. There are 2 top level docker
+files [Dockerfile-Server](Dockerfile-Server) and [Dockerfile-Client](Dockerfile-Client).
+
+_Note: The third service is the database which does not have a dockerfile. Instead, it is build in the docker-compose
+see [here](docker-compose.yml) for more._
+
+Each take an argument to define whether the container built is debug or release.
+See [docker-build-dev](#docker-build-dev) and
+[docker-build-release](#docker-build-release).
+
+When the containers are built they are accessible by the names assigned to them in the docker-compose. When built successfully it should look something like this
+
+![Container Preview](Container-Preview.png)
+
+The ports exposed on each service is both port 80 and 443. Below is a mapping of the ports.
+
+### Server
+
+- Port **8080** on host machine is mapped to **80** in container for _http_
+- Port **8081** on host machine is mapped to **443** in container for _https_
+
+### Client
+
+- Port **5000** on host machine is mapped to **80** in container for _http_
+- Port **5001** on host machine is mapped to **443** in container for _https_

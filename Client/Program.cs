@@ -9,11 +9,18 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
 
-builder.Services.AddScoped(_ =>
-    new HttpClient
+builder.Services
+    .AddHttpClient("server",
+        client => { client.BaseAddress = new Uri(builder.Configuration["server_host_address"] ?? string.Empty); })
+    .ConfigurePrimaryHttpMessageHandler(() =>
     {
-        BaseAddress = new Uri("http://localhost:8081")
+        var handler = new HttpClientHandler();
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            handler.ServerCertificateCustomValidationCallback = (_, _, _, _) => true;
+        return handler;
     });
+
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("server"));
 
 builder.Services.AddScoped<OrganisationService>();
 
