@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile-Client = Dockerfile-Client
 		Dockerfile-Server = Dockerfile-Server
 		Container-Preview.png = Container-Preview.png
+		Terminology.md = Terminology.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{00215753-8D89-4F9D-A363-0067013074C2}"

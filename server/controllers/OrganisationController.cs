@@ -11,7 +11,6 @@ namespace Server.controllers;
 public class OrganisationController(OdinDatabaseContext context) : ControllerBase
 {
     [HttpGet]
-    [IgnoreAntiforgeryToken]
     public async Task<ActionResult<IEnumerable>> GetOrganisations()
     {
         return await context.Organisations.Include(x => x.Services).Select(
